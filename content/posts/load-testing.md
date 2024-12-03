@@ -1,0 +1,37 @@
++++
+date = '2017-10-22T12:00:00-08:00'
+title = 'Load Testing the Easy Way'
++++
+It’s two weeks before your big launch and things are looking really good. Your beta users love the product and you’re even starting to get some good buzz in the press. You’re crunching to finish up those last few features, but suddenly the CTO shows up at your desk and starts asking how many servers to spin up for the big day. Crap. You frantically start Googling and you find a few tools and run them. The results seem inconclusive and you don’t have enough time to try all the possible scenarios. You have some data but you’re no closer to answering the question: How many servers do I need to support the load?
+
+Assuming you have a load estimate you’re expecting to hit. You can always boot up a bunch of servers and run a full scale load test to see what breaks. The first issue with this technique is that often scaling the test harness can be just as difficult as scaling your service. It can take considerable time away from work on the actual service. Secondly, it’s much more difficult to debug issues across the whole distributed system. Third, depending on the size of the cluster, it can be very expensive to run the testing. Obviously, you can use the production cluster if you’re pre-launch, but after you have real customers on the system, you won’t want to degrade their experience to run load tests.
+
+I have a simple methodology that answers the number of servers question and also gives some insight into how performance will look under load. It requires making some simplifying assumptions, but it has worked well in practice to reliably characterize a variety of server software. It also make some simplifying assumptions that allow a much faster iteration on the test and better debuggability.
+
+First you need an HTTP load testing tool. Almost any will do: jmeter, seige or, my favorite, ab (Apache Bench). There are two metrics that need to be tracked during the load test: performance and throughput. Performance is defined as the time a user has to wait for a request to be completed. Server endpoints are usually measured on the order of milliseconds and the test tool should report this number for each request or an aggregate like average or 95th percentile. Throughput is measured in requests per second (RPS). If you have the number of requests and total test time, you can just divide. Unlike performance, throughput is not directly user-facing but instead is a measure of server utilization. This metric allows us to estimate the number of servers required to handle the load later.
+
+Now it’s time to start testing. Always start by testing a single “scaling unit,” which usually means a single server or possibly a container or VM. Whatever is the smallest unit that you would expected to bring online to handle more traffic. Make sure to get a separate server on the same network to run the test harness that is the same performance or better than the server under test.
+
+Since you only have one server under test, you should only need a single test harness of the same size. Because the test harness doesn’t really perform any business logic, a well designed one should be able to easily overwhelm your server that is performing business logic. This assumes that you’re running the test harness on the exact same scaling unit as the server, but if the test harness is much more performant than the server, then a smaller scale server should do. The easiest path is to keep it simple and use the same or better server for the test harness and also monitor the test server to make sure it doesn’t exhaust resources like hit 100% CPU etc. Beware that if the endpoint is too trivial, you may run into harness scaling issues.
+
+Most test tools require specification of a total number of requests or a total test time. The best number of requests to run is the minimum amount to get a repeatable result. Make a few test runs and if you get within about 5% run to run then that should be good enough. From experience, this tends to fall in the hundreds to thousands of requests.
+
+Now that everything is setup, execute multiple runs of your test at different concurrency levels. A good start would be 1, 2, 10, 50, 100, 200. If you find you’re failing your performance spec badly, you can stop there and not bother running higher concurrency levels. If you’re still within spec at the end and the responses per second are still increasing, you need to do more runs with higher concurrency.
+
+For analysis, make two plots; the x-axis should always be concurrency. The y-axis for plot one is the performance spec and for plot 2 is RPS. The performance should increase with concurrency, mostly linearly. RPS should increase and then level out or decline slowly.
+200ms was chosen as a performance target. The max concurrency is 38
+At a concurrency of 38, throughput is about 190 RPS
+
+Concurrency    RPS     ms2              66.4    27.320             171.2   112.550             192.0   254.2100            194.2   504.7150            196.8   746.7
+
+On the performance graph find the point on the line where it crosses your performance spec. Find the concurrency at this level; this is the maximum concurrency the server can handle. Going above this level means you’re performance is failing spec and you users will have a bad experience. If you take that level of concurrency to the RPS graph and find the RPS this is the maximum RPS your server can handle. In order to handle more RPS, add more servers. Then add some more for some redundancy.
+
+Assumption #1: No shared resource will be constrained when adding more servers. When this occurs, it tends to be a database or network bandwidth. The database can be tested in a similar manner with the frontend servers considered clients.
+
+Assumption #2: Your curves are well-behaved. The data can bounce around a bit but the curves should fit the general description. If the curves bounce around or are flat to start, then this methodology won’t work. This is usually a sign that the architecture of the code is not scaling with concurrency and performance bottlenecks in the code should be investigated.
+
+Assumption #3: You will hit a limit based on some constrained resource. This is most often CPU, but could be memory or I/O. If none of the hardware limits are reached, there may be a soft limit where the code is locking or synchronized around a single resource like a DB connection or just a mutex on a data structure. The last constraint which bears some mention is context switching.
+
+If you run your test to high enough concurrency levels, you’ll generally see a point where performance climbs exponentially and RPS drops precipitously. If this is accompanied by high system CPU, it is a sure sign you’ve got too many threads and you’re spending more time context switching than actually processing. I’ve never seen this happen within a reasonable performance threshold, but it might happen if a request fans out to many threads. In this scenario, a reduction in the number of processing threads would increase overall performance.
+
+This technique is cheap and easy enough that it can be run during normal automated testing to catch performance or scalability regressions. It won’t catch every possible issue, but it can give you and your CTO the confidence your launch will go off without a hitch.
