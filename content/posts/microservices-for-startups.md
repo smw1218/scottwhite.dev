@@ -1,5 +1,5 @@
 +++
-date = '2024-06-08T12:00:00-08:00'
+date = '2022-06-08T12:00:00-08:00'
 title = 'Microservices for Startups'
 summary = 'Microservices provide some surprising benefits over a monolith for small teams and startups if done right.'
 +++

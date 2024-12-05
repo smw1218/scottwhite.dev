@@ -1,5 +1,5 @@
 +++
-date = '2024-06-28T12:00:00-08:00'
+date = '2022-06-28T12:00:00-08:00'
 title = 'Go Project Structure'
 summary = 'Structure for your backend Go repository.'
 +++

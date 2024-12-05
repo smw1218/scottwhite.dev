@@ -1,5 +1,5 @@
 +++
-date = '2024-06-14T12:00:00-08:00'
+date = '2022-06-14T12:00:00-08:00'
 title = 'Concurrency in Go Is Not Magic'
 summary = "A look at Uber's [Data Race Patterns in Go](https://www.uber.com/blog/data-race-patterns-in-go/) and how to avoid them."
 +++
