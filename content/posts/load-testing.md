@@ -1,6 +1,7 @@
 +++
 date = '2017-10-22T12:00:00-08:00'
 title = 'Load Testing the Easy Way'
+summary = 'A better way to improve the performance and scalability of your backend services.'
 +++
 In my career I've repeatedlyfound myself in the position of needing to test the performance and scalability of our backend services. It's usually before a launch or just prior to an expected bump in traffic. I worked several years on fitness products, so ramping up for New Year's resolutions is something that happened every year. With all this practice, I've developed a methodology that I think works better than the standard approach.
 

@@ -1,6 +1,7 @@
 +++
 date = '2012-01-19T15:12:00-08:00'
 title = 'Apache Bench'
+summary = 'Apache Bench (`ab`) is a command line HTTP performance and load testing tool.'
 +++
 Apache Bench (`ab`) is a command line HTTP performance and load testing tool. It has been around for twenty years and every time I need to do some load testing on a new API my team is about to launch, I try all the latest HTTP load/perf tools. Despite being the oldest player on the field, Apache Bench (`ab`) is still the easiest tool to use. 
 
