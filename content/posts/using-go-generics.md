@@ -2,6 +2,7 @@
 date = '2021-08-17T12:00:00-08:00'
 lastmod = '2024-12-05T16:22:00-08:00'
 title = 'Using Go Generics'
+summary = 'A real-world example of adding Go generics to a package.'
 +++
 I was pairing with another engineer the other day and we needed to download some largish mp4 files and process the headers. The service could possibly get multiple requests at once, so we wanted to deduplicate the expensive requests and return the same value to all the concurrent requesters. I’ve often written similar code and with Go’s excellent concurrency primitives it’s usually a pretty simple task. After about an hour we had the code working and it seemed pretty straight-forward. The next day when I was reviewing the PR, I noticed a possible deadlock. I guess this wasn’t as simple as I had first thought. After fixing the deadlock, I decided to extract the core of the code into a reusable library so the next person wouldn’t make the same mistake.
 
