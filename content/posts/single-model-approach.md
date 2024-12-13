@@ -1,6 +1,7 @@
 +++
 date = '2022-07-19T12:00:00-08:00'
 title = 'Single Model Approach in Go'
+featured_image='/img/gophers-in-one-basket.webp'
 summary = 'Do you really need all that copying?'
 +++
 For many application APIs, the majority of your API calls end up being thin CRUD (create, read, update, delete) wrappers around a database record. This means you’ll often have a struct representing the database record for representation in your code. You’ll also need to marshal this data to the wire to return it for your API. In a microservices environment, you often also have an API client for that same API which parses the wire format back into a struct for usage. Many server architecture patterns recommend isolating these different concerns including having separate objects for all three places.

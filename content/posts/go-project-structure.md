@@ -1,6 +1,7 @@
 +++
 date = '2022-06-28T12:00:00-08:00'
 title = 'Go Project Structure'
+featured_image = '/img/maksym-kaharlytskyi-Q9y3LRuuxmg-unsplash.jpg'
 summary = 'Structure for your backend Go repository.'
 +++
 Organizing go code in a big project can be hard. [Go’s standard package naming conventions](https://go.dev/blog/package-names) are great, but the examples are simplistic and relate more to library code. With so many companies using Go for their backend, I’m surprised by how few examples there are of package/folder organization for a big server project. At Tonal, we have a monorepo supporting many microservices and, after many iterations over the past four years, I think we finally have a good basic structure that will serve us well going forward. Tonal produces a connected strength training device, so my business logic examples will be workout related.

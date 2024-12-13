@@ -1,6 +1,7 @@
 +++
 date = '2022-06-14T12:00:00-08:00'
 title = 'Concurrency in Go Is Not Magic'
+featured_image='/img/magic-gophers.webp'
 summary = "A look at Uber's [Data Race Patterns in Go](https://www.uber.com/blog/data-race-patterns-in-go/) and how to avoid them."
 +++
 I recently read Uber’s post [Data Race Patterns in Go](https://www.uber.com/blog/data-race-patterns-in-go/) about runtime analysis of data races in their codebase. This is some amazing work to track down these often subtle bugs and I’m sure Uber’s enormous codebase is benefiting from their hard work. However the tone of the article implies that somehow these issues are the fault of Go and should somehow be prevented by the language itself.

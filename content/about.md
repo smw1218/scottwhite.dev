@@ -9,7 +9,7 @@ featured_image = '/img/anna-evans-O4j2-fcjo9A-unsplash.jpg'
 
 I'm a software architect and manager with over 20 years of experience in the industry. I've worked on everything from small startups to large enterprises but have recently specialized in building out growth stage startups. I've been programming in [Go](https://go.dev/) since 2011 and am a big fan of the language and its ecosystem. I have used Go for building out simple microservices to greatly accelerate backend team development. In my free time, I'm a woodworker (hence my cover image) but I also enjoy a big refactor. Refactors often feel like breaking down a code base with a saw to put it back together again in a beautiful way. I'm interested in AI and the potential to transform software development and the world.
 
-I tend to get fully immersed in my work, which has been in the fitness and wellness space for the last 10 years. I use my Tonal for strength training on a weekly basis. I enjoy yoga after building a personalized yoga app.
+I tend to get fully immersed in my work, which has been in the fitness and wellness space for the last 10 years. I use my Tonal for strength training on a weekly basis.
 
 # Experience
 

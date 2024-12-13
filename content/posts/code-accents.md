@@ -1,7 +1,7 @@
 +++
 date = '2024-12-10T17:19:06-08:00'
 title = 'Code Accents'
-summary = "Let your developers' individualities shine"
+summary = "Let your developers' individualities shine!"
 +++
 >It should be impossible to know who wrote a piece of code
 >
