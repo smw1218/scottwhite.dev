@@ -1,6 +1,7 @@
 +++
 date = '2023-09-10T12:00:00-08:00'
 title = '2012 Go Wish List'
+featured_image='/img/wish700.jpg'
 summary = 'What would you have asked to be added to Go in 2012?'
 +++
 In 2012, I was working at an early mobile game studio and platform named ngmoco. My team ran a game server platform written in Ruby on Rails and we were putting a huge effort into scaling. My boss Dave was trying out many new technologies to see if they had a potential to improve our situation. He ran across a relatively new language out of Google called Go. The Go team had announced that they were working toward a 1.0 release in the near future. We were really attracted to the concurrency features and the performance improvements we could get from a compiled language. The simple syntax and already-full-featured standard library were also great bonuses.
