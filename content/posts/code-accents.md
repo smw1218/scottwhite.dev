@@ -2,6 +2,7 @@
 date = '2024-12-10T17:19:06-08:00'
 title = 'Code Accents'
 summary = "Let your developers' individualities shine!"
+featured_image = '/img/tallest_poppy.jpg'
 +++
 >It should be impossible to know who wrote a piece of code
 >
