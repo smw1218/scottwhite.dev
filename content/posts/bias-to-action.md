@@ -1,6 +1,6 @@
 +++
 date = '2025-02-04T09:19:26-08:00'
-title = 'Bias to Action'
+title = 'Bias for Action'
 summary = "Stop thinking and just start coding"
 featured_image = '/img/bias-to-action.jpg'
 +++
