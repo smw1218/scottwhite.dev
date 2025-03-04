@@ -157,7 +157,7 @@ While I try to minimize their use, I do find closures handy on occasion. Here ar
 
 ### Short Inline Functions
 Let's say I want to log an error rather than ignoring it:
-```
+```go
 defer func() {
     err := f.Close()
     if err != nil {
@@ -168,7 +168,7 @@ defer func() {
 This could be done with a named function, but it would remove little complexity given how short this closure is. If I needed to do something more complex I probably would pull it out into a named function.
 
 ### Signature Changes
-```
+```go
 thing := getThing()
 funcINeed := func() SomeReturnValue {
     return funcIHave(thing)
