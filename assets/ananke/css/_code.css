@@ -1,0 +1,30 @@
+pre, .pre  {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow:   scroll;
+}
+
+code {
+  font-size: 1rem;
+  background-color: #ddd;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+}
+
+pre  code {
+  display: block;
+  padding: 1.5em 1.5em;
+  white-space: pre;
+  font-size: .875rem;
+  line-height: 2;
+  background-color: #222;
+}
+
+pre {
+  background-color: #222;
+  color: #ddd;
+  white-space: pre;
+
+  hyphens: none;
+  position: relative;
+}
